@@ -68,7 +68,7 @@ public class ConsoleInput {
                 viewTasks();
                 break;
             case 3:
-                //check off tasks
+                checkoffTasks();
                 break;
             case 4:
                 quit();
@@ -93,8 +93,8 @@ public class ConsoleInput {
             if (text.equals("q")) {
                 keepGoing = false;
             } else {
-                Task t = parseTask(text, c);
-                tasks.addTask(t);
+                Task t = parseTask(text);
+                tasks.addTask(t, c);
             }
         }
     }
@@ -107,16 +107,21 @@ public class ConsoleInput {
         }
     }
 
-    private void quit() {
+    private void checkoffTasks() {
+        
+    }
+
+    private void quit() throws IOException {
+        CsvConverter.writeToCSV(tasks);
         System.out.println("Okay. Goodbye. ");
     }
 
-    private static Task parseTask(String input, Category category) throws ParseException {
+    private static Task parseTask(String input) throws ParseException {
         int dashPosition = input.indexOf("-");
         String dateString = input.substring(0, dashPosition);
         Date dueDate = parseDate(dateString);
         String name = input.substring(dashPosition+2);
-        return new Task(name, dueDate, category);
+        return new Task(name, dueDate);
     }
 
     private static Date parseDate(String dateString) throws ParseException {

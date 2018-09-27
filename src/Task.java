@@ -5,16 +5,14 @@ public class Task implements Comparable<Task> {
 
     private String name;
     private Date dueDate;
-    private Category category;
 
-    public Task(String name, Date dueDate, Category category) {
+    public Task(String name, Date dueDate) {
         this.name = name;
         this.dueDate = dueDate;
-        this.category = category;
     }
 
     public Task(Task t) {
-        this(t.name, t.dueDate, t.category);
+        this(t.name, new Date(t.dueDate.getTime()));
     }
 
     @Override
@@ -44,14 +42,6 @@ public class Task implements Comparable<Task> {
 
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 
     @Override

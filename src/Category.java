@@ -17,6 +17,10 @@ public class Category {
         this.color = color;
     }
 
+    public Category(Category c) {
+        this(c.name, Color.getColor(c.color.toString()));
+    }
+
     public String getName() {
         return name;
     }
