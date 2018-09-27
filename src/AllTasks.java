@@ -8,12 +8,26 @@ public class AllTasks {
     private List<Task> tasks;
     //TODO implement subcategory functionality
 
+    //TODO change representation to Map
+
     public AllTasks() {
         tasks = new ArrayList<Task>();
     }
 
+    public AllTasks(List<Task> tasks) {
+        this.tasks = new ArrayList<Task>();
+        for (Task  t : tasks) {
+            Task copy = new Task(t);
+            this.tasks.add(copy);
+        }
+    }
+
     public void addTask(Task task) {
         tasks.add(task);
+    }
+
+    public int size() {
+        return tasks.size();
     }
 
     private Map<Category,List<Task>> generateCategoryMap() {

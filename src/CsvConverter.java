@@ -33,7 +33,7 @@ public class CsvConverter {
         fileWriter.close();
     }
 
-    public static List<Task> readFromCSV() throws IOException {
+    public static AllTasks readFromCSV() throws IOException {
         List<Task> tasks = new ArrayList<Task>();
 
         BufferedReader fileReader = new BufferedReader(new FileReader(filename));
@@ -50,7 +50,7 @@ public class CsvConverter {
             Task t = new Task(name, dueDate, category);
             tasks.add(t);
         }
-        return tasks;
+        return new AllTasks(tasks);
     }
 
 }

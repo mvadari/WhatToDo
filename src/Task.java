@@ -13,6 +13,10 @@ public class Task implements Comparable<Task> {
         this.category = category;
     }
 
+    public Task(Task t) {
+        this(t.name, t.dueDate, t.category);
+    }
+
     @Override
     public int compareTo(Task otherTask) {
         if (null == this.dueDate) {
