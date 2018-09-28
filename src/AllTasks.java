@@ -9,8 +9,6 @@ public class AllTasks {
     private Map<String, Category> categories; //category name to category object
     //TODO implement subcategory functionality
 
-    //TODO change representation to Map
-
     public AllTasks() {
         tasks = new HashMap<String, List<Task>>();
         categories = new HashMap<String, Category>();
@@ -72,7 +70,8 @@ public class AllTasks {
         String output = "";
         for (String categoryName : tasks.keySet()) {
             String categoryOutput = "Category: " + categoryName + "\n---------\n";
-            List<Task> categoryTasks = tasks.get(categoryName); //TODO maybe sort?
+            List<Task> categoryTasks = tasks.get(categoryName);
+            Collections.sort(categoryTasks);
             for (Task t : categoryTasks) {
                 categoryOutput += t.toString() + "\n";
             }

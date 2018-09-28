@@ -33,7 +33,7 @@ public class CsvConverter {
             for (Task t : categoryTasks) {
                 taskFileWriter.append(t.getName());
                 taskFileWriter.append(COMMA_DELIMITER);
-                taskFileWriter.append(t.getDueDate().toString());
+                taskFileWriter.append(Long.toString(t.getDueDate().getTime()));
                 taskFileWriter.append(COMMA_DELIMITER);
                 taskFileWriter.append(category);
                 taskFileWriter.append(NEW_LINE_SEPARATOR);
@@ -53,7 +53,7 @@ public class CsvConverter {
             Category c = categoryMap.get(name);
             categoryFileWriter.append(name);
             categoryFileWriter.append(COMMA_DELIMITER);
-            categoryFileWriter.append(c.getColor().toString());
+            categoryFileWriter.append(Integer.toString(c.getColor().getRGB()));
             categoryFileWriter.append(NEW_LINE_SEPARATOR);
         }
 
@@ -76,7 +76,7 @@ public class CsvConverter {
         while ((line = taskFileReader.readLine()) != null) {
             String[] tokens = line.split(COMMA_DELIMITER);
             String name = tokens[TASK_NAME_POSITION];
-            Date dueDate = new Date(Integer.parseInt(tokens[TASK_DATE_POSITION]));
+            Date dueDate = new Date(Long.parseLong(tokens[TASK_DATE_POSITION]));
             String category = tokens[TASK_CATEGORY_POSITION];
             Task t = new Task(name, dueDate);
             tasks.addTask(t, categoryMap.get(category));
@@ -96,7 +96,7 @@ public class CsvConverter {
         while ((line = categoryFileReader.readLine()) != null) {
             String[] tokens = line.split(COMMA_DELIMITER);
             String categoryName = tokens[CATEGORY_NAME_POSITION];
-            Color color = Color.getColor(tokens[CATEGORY_COLOR_POSITION]);
+            Color color = new Color(Integer.parseInt(tokens[CATEGORY_COLOR_POSITION]));
             Category c = new Category(categoryName, color);
             categoryMap.put(categoryName, c);
         }

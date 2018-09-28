@@ -18,7 +18,7 @@ public class Category {
     }
 
     public Category(Category c) {
-        this(c.name, Color.getColor(c.color.toString()));
+        this(c.name, new Color(c.color.getRGB()));
     }
 
     public String getName() {
@@ -39,6 +39,6 @@ public class Category {
 
     @Override
     public String toString() {
-        return name + ";" + color.toString();
+        return "[" + name + "," + this.color.toString() + "]";
     }
 }

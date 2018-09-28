@@ -86,6 +86,7 @@ public class ConsoleInput {
         //TODO check if category already exists
         Category c = new Category(category, Color.BLUE);
 
+
         boolean keepGoing = true;
         while (keepGoing) {
             System.out.println("Please state the task in the form MM/DD HH:mmam/pm - NAME. If you don't want to add another task type \"q\"");
@@ -108,7 +109,7 @@ public class ConsoleInput {
     }
 
     private void checkoffTasks() {
-        
+
     }
 
     private void quit() throws IOException {
